@@ -298,6 +298,7 @@ extension Keywords {
   }
 
   /// https://json-schema.org/draft/2020-12/json-schema-validation#name-pattern
+  @available(iOS 16.0, *)
   package struct Pattern: AssertionKeyword {
     package static let name = "pattern"
 

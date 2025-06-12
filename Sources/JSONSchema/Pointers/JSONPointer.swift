@@ -11,6 +11,11 @@ public struct JSONPointer: Sendable, Hashable {
   public init() {}
 
   public init(from string: String) {
+    
+    guard #available(iOS 16.0, *) else {
+      return
+    }
+    
     let elements = string.split(separator: "/", omittingEmptySubsequences: false).dropFirst()
     for element in elements {
       // https://datatracker.ietf.org/doc/html/rfc6901#section-4
