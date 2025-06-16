@@ -16,9 +16,14 @@ public enum Dialect: String, Hashable, Sendable {
   /// Order matters as some keywords require annoation results of others.
   /// In the future, keywords should define their own dependencies and order should be determined by a dependency graph algorithm.
   var keywords: [any Keyword.Type] {
+    
+    guard #available(iOS 16.0, *) else {
+      return []
+    }
+    
     switch self {
     case .draft2020_12:
-      [
+      return [
         Keywords.SchemaKeyword.self,
         Keywords.Vocabulary.self,
         Keywords.Identifier.self,

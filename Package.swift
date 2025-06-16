@@ -7,7 +7,7 @@ let package = Package(
   name: "swift-json-schema",
   platforms: [
     .macOS(.v14),
-    .iOS(.v17),
+    .iOS(.v14),
     .watchOS(.v10),
     .tvOS(.v17),
     .macCatalyst(.v17),
@@ -17,14 +17,6 @@ let package = Package(
     .library(
       name: "JSONSchema",
       targets: ["JSONSchema"]
-    ),
-    .library(
-      name: "JSONSchemaBuilder",
-      targets: ["JSONSchemaBuilder"]
-    ),
-    .executable(
-      name: "JSONSchemaClient",
-      targets: ["JSONSchemaClient"]
     ),
   ],
   dependencies: [
@@ -45,62 +37,6 @@ let package = Package(
       dependencies: ["JSONSchema"],
       resources: [
         .copy("JSON-Schema-Test-Suite")
-      ]
-    ),
-
-    // Library for building JSON schemas with Swift's result builders.
-    .target(
-      name: "JSONSchemaBuilder",
-      dependencies: [
-        "JSONSchema",
-        "JSONSchemaMacro",
-      ]
-    ),
-    .testTarget(
-      name: "JSONSchemaBuilderTests",
-      dependencies: [
-        "JSONSchemaBuilder",
-      ]
-    ),
-
-    // Macro implementation that preforms the source transformation of a macro.
-    .macro(
-      name: "JSONSchemaMacro",
-      dependencies: [
-        .product(name: "SwiftSyntax", package: "swift-syntax"),
-        .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-        .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
-      ]
-    ),
-    .testTarget(
-      name: "JSONSchemaMacroTests",
-      dependencies: [
-        "JSONSchemaMacro",
-        .product(name: "SwiftSyntaxMacroExpansion", package: "swift-syntax"),
-        .product(name: "SwiftSyntaxMacrosGenericTestSupport", package: "swift-syntax"),
-      ]
-    ),
-
-    // A client of the library, which is able to use the macro in its own code.
-    .executableTarget(
-      name: "JSONSchemaClient",
-      dependencies: [
-        "JSONSchema",
-        "JSONSchemaBuilder",
-        "JSONSchemaMacro",
-      ]
-    ),
-
-    .testTarget(
-      name: "JSONSchemaIntegrationTests",
-      dependencies: [
-        "JSONSchema",
-        "JSONSchemaBuilder",
-        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
-        .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing"),
-      ],
-      exclude: [
-        "__Snapshots__"
       ]
     ),
   ]

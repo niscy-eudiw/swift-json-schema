@@ -265,6 +265,7 @@ extension Keywords {
   }
 
   /// https://json-schema.org/draft/2020-12/json-schema-core#name-patternproperties
+  @available(iOS 16.0, *)
   package struct PatternProperties: ApplicatorKeyword {
     package static let name = "patternProperties"
 
@@ -343,6 +344,11 @@ extension Keywords {
       at instanceLocation: JSONPointer,
       using annotations: inout AnnotationContainer
     ) throws(ValidationIssue) {
+      
+      guard #available(iOS 16.0, *) else {
+        return
+      }
+      
       guard let instanceObject = input.object else { return }
 
       let previouslyValidatedKeys =
@@ -807,6 +813,11 @@ extension Keywords {
       at instanceLocation: JSONPointer,
       using annotations: inout AnnotationContainer
     ) throws(ValidationIssue) {
+      
+      guard #available(iOS 16.0, *) else {
+        return
+      }
+      
       guard let instanceObject = input.object else { return }
 
       // Nested unevaluatedProperties take precedence.

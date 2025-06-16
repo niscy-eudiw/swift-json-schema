@@ -153,6 +153,16 @@ struct ReferenceResolver {
   }
 
   private func schema(for refURL: URL) throws -> Schema {
+    guard #available(iOS 16.0, *) else {
+      throw NSError(
+        domain: "com.example.myapp",
+        code: 1001,
+        userInfo: [
+          NSLocalizedDescriptionKey: "iOS 16.0 and above supported"
+        ]
+      )
+    }
+    
     let referenceURL = refURL.withoutFragment ?? refURL
     var fragment = refURL.fragment(percentEncoded: false)
 
