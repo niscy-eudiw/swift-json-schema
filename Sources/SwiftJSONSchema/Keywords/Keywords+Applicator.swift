@@ -884,7 +884,7 @@ extension Never: AnnotationValueConvertible {
 }
 
 extension Set: AnnotationValueConvertible where Element == String {
-  package var value: JSONSchema.JSONValue {
+  package var value: SwiftJSONSchema.JSONValue {
     .array(self.map { .string($0) })
   }
 
