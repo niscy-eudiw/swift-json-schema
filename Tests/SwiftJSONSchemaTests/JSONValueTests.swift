@@ -1,5 +1,5 @@
 import Foundation
-import JSONSchema
+import SwiftJSONSchema
 import Testing
 
 struct JSONValueTests {

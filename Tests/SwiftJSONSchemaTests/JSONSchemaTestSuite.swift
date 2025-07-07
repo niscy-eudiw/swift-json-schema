@@ -1,7 +1,7 @@
 import Foundation
 import Testing
 
-@testable import JSONSchema
+@testable import SwiftJSONSchema
 
 struct JSONSchemaTestSuite {
   static let fileLoader = FileLoader<[JSONSchemaTest]>(

@@ -15,8 +15,8 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "JSONSchema",
-      targets: ["JSONSchema"]
+      name: "SwiftJSONSchema",
+      targets: ["SwiftJSONSchema"]
     ),
   ],
   dependencies: [
@@ -27,14 +27,14 @@ let package = Package(
   targets: [
     // Library that defines the JSON schema related types.
     .target(
-      name: "JSONSchema",
+      name: "SwiftJSONSchema",
       resources: [
         .process("Resources")
       ]
     ),
     .testTarget(
-      name: "JSONSchemaTests",
-      dependencies: ["JSONSchema"],
+      name: "SwiftJSONSchemaTests",
+      dependencies: ["SwiftJSONSchema"],
       resources: [
         .copy("JSON-Schema-Test-Suite")
       ]
